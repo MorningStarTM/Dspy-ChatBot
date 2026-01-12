@@ -1,11 +1,13 @@
 import dspy
+import os
 
 
-KEY = "Place your API KEY"
 
-
-lm = dspy.LM("gemini/gemini-2.0-flash", api_key=KEY)
+key = os.environ["HUGGINGFACE_API_KEY"]  # or HUGGINGFACEHUB_API_TOKEN in some setups
+lm = dspy.LM("huggingface/meta-llama/Meta-Llama-3-8B-Instruct")
 dspy.configure(lm=lm)
+# lm = dspy.LM("gemini/gemini-2.0-flash", api_key=KEY)
+# dspy.configure(lm=lm)
 
 class ChatBot(dspy.Signature):
     """you're an physics subject assistant.answer for physics related question."""
